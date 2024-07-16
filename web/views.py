@@ -145,3 +145,14 @@ def agregar_promocion(request):
         form = PromocionForm()
     
     return render(request, 'agregar_promocion.html', {'form': form})
+
+def ver_reservas(request):
+    reservas = Reserva.objects.filter(usuario=request.user)
+    return render(request, 'ver_reservas.html', {'reservas': reservas})
+
+@login_required
+def eliminar_reserva(request, reserva_id):
+    reserva = Reserva.objects.get(id=reserva_id, user=request.user)
+    if reserva:
+        reserva.delete()
+    return redirect('ver_reservas')

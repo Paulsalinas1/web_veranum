@@ -48,7 +48,7 @@
                             <ul class="dropdown-menu">
                                 {% if request.user.is_authenticated %}
                                 <form>
-                                    <li><a class="dropdown-item" href=" {% url "index"  %}">Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href=" {% url "ver_reservas"  %}">reservas</a></li>
                                     <li><a class="dropdown-item" href="{% url "cerrar" %}">Cerrar cuenta</a></li>
                                 </form>
                                 {% else %}

@@ -1,0 +1,42 @@
+{% extends "base_p.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} home {% endblock title %}
+{% block contenido %}
+
+<!-- Section-->
+<div class="row">
+    <section class="py-5 col-md-12">
+        <h3 class="display-5 fw-bolder text-center">Promociones veramun</h3>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">
+                    {% if promociones %}
+                    {% for p in promociones %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{ p.imagen.url }}" alt="{{ p.nombre }}" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ p.nombre }}</h5>
+                                    <h5 class="fw-bolder">{{ p.descripcion }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="col-12 text-center">
+                        <p>No hay promociones disponibles.</p>
+                    </div>
+                    {% endif %}
+            </div>
+        </div>
+    </section>
+    </div>
+{% endblock contenido %}
+
+{% block script %}
+{% endblock script %}

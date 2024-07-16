@@ -1,0 +1,19 @@
+{% extends "base_p.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Reservar {% endblock title %}
+{% block contenido %}
+
+<div class="container">
+    <h1 class="my-4">Reservar Habitación</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Reservar</button>
+    </form>
+</div>
+
+{% endblock contenido %}
+
+{% block script %}
+{% endblock script %}

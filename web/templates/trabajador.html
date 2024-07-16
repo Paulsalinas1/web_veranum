@@ -1,0 +1,35 @@
+{% extends "base_admin.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Mi_cuenta_admin{% endblock title %}
+{% block contenido %}
+<div class="container mt-5">
+    <h2>Promociones</h2>
+    <div class="row">
+        {% for promocion in promociones %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ promocion.imagen.url }}" class="card-img-top" alt="{{ promocion.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ promocion.nombre }}</h5>
+                    <p class="card-text">{{ promocion.descripcion }}</p>
+                    <p class="card-text">
+                        {% if promocion.validada %}
+                        <span class="badge bg-success">Validada</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">No Validada</span>
+                        {% endif %}
+                    </p>
+                    {% if request.user.is_authenticated and request.user.is_gerente %}
+                    <a href="{% url 'editar_promocion' promocion.id %}" class="btn btn-primary">Editar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock contenido %}
+{% block script %}
+{% endblock script %}   
+        

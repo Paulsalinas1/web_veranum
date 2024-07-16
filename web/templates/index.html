@@ -1,0 +1,72 @@
+{% extends "base_p.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} home {% endblock title %}
+{% block contenido %}
+<div class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-2">
+        <div class="text-center text-white">
+            <h3 class="display-5 fw-bolder">Encuentre su alojamiento deseado</h3>
+            <p class="lead fw-normal text-white-50 mb-0">para que pueda disfrutar a lo grande</p>
+        </div>
+    </div>
+</div>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/promo1.png' %}" class="d-block w-100" alt="Promoción 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/promo2.png' %}" class="d-block w-100" alt="Promoción 2">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Section-->
+<div class="row">
+<section class="py-5 col-md-12">
+    <h3 class="display-5 fw-bolder text-center">Hoteles veramun</h3>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% if productos %}
+                {% for p in productos %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ p.foto.url }}" alt="{{ p.nombre }}" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ p.nombre }}</h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='{% url "ver_habitaciones" p.id %}'>Ver opciones</a></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-12 text-center">
+                    <p>No hay hoteles disponibles.</p>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+</section>
+</div>
+{% endblock contenido %}
+
+{% block script %}
+{% endblock script %}

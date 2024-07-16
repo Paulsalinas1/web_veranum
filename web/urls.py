@@ -31,6 +31,7 @@ urlpatterns = [
     path('Reservar/<id>',views.reservar,name='Reservar'),
     path('ver_promos/',views.ver_promos,name='ver_promos'),
     path('editar_promocion/<id>',views.editar_promocion,name='editar_promocion'),
+    path('agregar_promocion/',views.agregar_promocion,name='agregar_promocion'),
 ]
 
 if settings.DEBUG:

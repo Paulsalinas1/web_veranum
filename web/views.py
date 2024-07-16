@@ -133,3 +133,15 @@ def editar_promocion(request, id):
         form = PromocionForm(instance=promocion)
 
     return render(request, 'editar_promocion.html', {'form': form, 'promocion': promocion})
+
+def agregar_promocion(request):
+    if request.method == 'POST':
+        form = PromocionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Promoción agregada exitosamente.')
+            return redirect('trabajador')  # Reemplaza con el nombre de tu URL de éxito
+    else:
+        form = PromocionForm()
+    
+    return render(request, 'agregar_promocion.html', {'form': form})
